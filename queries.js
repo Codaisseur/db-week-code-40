@@ -1,11 +1,12 @@
 const User = require("./models").user;
 const TodoItem = require("./models").todoItem;
+const TodoList = require("./models").todoList;
 
 // findAll, findByPk, findOne.
 
 const getUsers = async () => {
   try {
-    const users = await User.findAll(); // findOne, findByPk, etc...
+    const users = await User.findAll({ include: [TodoList] }); // findOne, findByPk, etc...
     const toDisplay = users.map(user => user.get({ plain: true }));
     console.log("users", toDisplay);
   } catch (error) {
@@ -42,4 +43,4 @@ const getItemById = async id => {
   }
 };
 
-getUserByName();
+getUsers();

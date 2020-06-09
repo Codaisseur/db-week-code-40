@@ -7,11 +7,13 @@ module.exports = {
         title: "Personal List",
         createdAt: new Date(),
         updatedAt: new Date(),
+        userId: 1,
       },
       {
         title: "My work list",
         createdAt: new Date(),
         updatedAt: new Date(),
+        userId: 1,
       },
     ]);
   },

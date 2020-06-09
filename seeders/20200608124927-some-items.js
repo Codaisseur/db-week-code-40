@@ -9,6 +9,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         important: true,
+        todoListId: 1,
       },
       {
         title: "Laundry",
@@ -16,6 +17,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         important: false,
+        todoListId: 1,
       },
       {
         title: "Teach backend week",
@@ -23,6 +25,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         important: true,
+        todoListId: 2,
       },
       {
         title: "Evaluate assessments",
@@ -30,6 +33,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         important: false,
+        todoListId: 2,
       },
     ]);
   },
