@@ -27,7 +27,7 @@ const getUserByName = async () => {
 
 const getItemsWithTag = async () => {
   try {
-    const items = await TodoItem.findAll({ include: [Tag] }); // => []
+    const items = await TodoItem.findAll({ include: { model: Tag } }); // => []
     const toDisplay = items.map(item => item.get({ plain: true }));
     console.log("items", toDisplay);
   } catch (error) {
