@@ -1,44 +1,30 @@
-## Many to many
+## Heroku
 
-1. generate join table model. DONE with attributes id1 and id2 (1 and 2 being different entitites.)
-2. Add references to join table attributes in migration. and run migration to create table.
-3. connect models. 2 sets of connections: 1. join table with entities, 2. entities amongst themselves.
-4. Seed and query to try out!
+1. Pull our code from GH
+2. Build.
 
-## REST
+- release || post build script. Procfile.
 
-REpresentational State Transfer.
-It's a architectural standard/style on how to build APIs. (Application Program Interface).
+3. Run.
 
-Three core concepts of REST:
+## More advanced express techniques.
 
-- Operations come as HTTP methods
-- Respond with appropiate status codes
-- clean and meaningful URLs
+# Routers:
 
-1. Operations come as HTTP methods.
-   CRUD => Create, Read, Update, Delete.
+- Problem: our index.js is going to end up really bloated.
+- Separate concerns
 
-HTTP Methods: GET (Read), POST (Create), PUT+PATCH (Update), DELETE (delete)
+# Middlewares:
 
-PUT: you send the whole updated object to the API
-PATCH: you just send the arguments to update
+- something in the middle.
 
-2. Respond with appropiate status codes:
-   200... everything good!
-   300... go away.
-   400... you screwed up! 401 - unauthorized 400 badRequst
-   500... I screwed up!
+common uses:
 
-3. Clean and meaningful urls:
+- Loggin data or requests
+- Some data validation on requests
+- Authorization.
 
-GET `/users` => get all users
-POST `/users` => create a user
-...
+Its nothing more than a function that gets the same params as our routes, might do something with the request or some check
+and then call next() to get the request to the next in line.
 
-`/sendEmail` => RPC (remote procedure call).
-
-Routes are defined of:
-
-1. endpoint
-2. HTTP method.
+Client ====> request ===> ||| server. 1st it goes through the middlewares until it gets to our route.
