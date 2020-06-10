@@ -1,11 +1,14 @@
 const express = require("express");
+const cors = require("cors");
 const User = require("./models").user;
 const TodoList = require("./models").todoList;
-
+const PORT = process.env.PORT || 4000;
 const app = express();
 
 const bodyParser = express.json();
 
+// middlewares
+app.use(cors());
 app.use(bodyParser);
 
 app.get("/users", async (req, res, next) => {
@@ -66,6 +69,26 @@ app.patch("/users/:id", async (req, res, next) => {
   }
 });
 
+app.delete("/users/:id", async (req, res, next) => {
+  try {
+    // 1. find the user
+    const { id } = req.params;
+    const user = await User.findByPk(id);
+    // 2. check if it exists/ if not answer with appropiate status code
+    if (!user) {
+      res.status(404).send("user not found");
+    } else {
+      // 3. Delete user if exists
+      await user.destroy();
+      console.log("user deleted", deletedUser);
+      // 4. Respond.
+      res.send(deletedUser);
+    }
+  } catch (e) {
+    next(e);
+  }
+});
+
 app.get("/users/:id/lists", async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -80,4 +103,4 @@ app.get("/users/:id/lists", async (req, res, next) => {
   }
 });
 
-app.listen(4000, () => console.log("server started!"));
+app.listen(PORT, () => console.log("server started!"));
